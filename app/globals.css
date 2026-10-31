@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f3f5f8;
+  --foreground: #0b1f3a;
+  --brand: #1b6bff;
+  --brand-dark: #0b1f3a;
+  --brand-light: #e8f1ff;
+  --surface: #ffffff;
+  --ink: #0b1f3a;
+  --gold: #e8a838;
+  --muted: #5b6b80;
+  --border: #e2e8f0;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-brand: #1b6bff;
+  --color-brand-dark: #0b1f3a;
+  --color-brand-light: #e8f1ff;
+  --color-surface: #ffffff;
+  --color-ink: #0b1f3a;
+  --color-gold: #e8a838;
+  --font-sans: var(--font-jakarta);
+  --font-serif: var(--font-instrument);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-jakarta), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .tb-marquee {
+    animation: none !important;
+  }
+}
+
+::selection {
+  background: color-mix(in srgb, var(--brand) 22%, transparent);
+}
+
+.tb-hero-pattern {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.tb-input {
+  @apply w-full rounded-xl border border-slate-200 bg-white py-3 pr-3.5 pl-3.5 text-base text-slate-900 shadow-sm transition placeholder:text-slate-400 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20 sm:py-2.5 sm:text-sm;
+}
+
+.tb-btn-primary {
+  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-brand px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#1558d6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand active:scale-[0.98];
+}
+
+.tb-btn-secondary {
+  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-brand hover:text-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand;
+}
+
+.tb-card {
+  @apply rounded-2xl border border-slate-200/80 bg-surface shadow-sm transition duration-300 hover:-translate-y-0.5 hover:border-brand/25 hover:shadow-lg;
+}
+
+@keyframes tb-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.tb-marquee {
+  animation: tb-marquee 32s linear infinite;
+}
+
+.skip-link {
+  @apply sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[80] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-ink focus:shadow-lg;
+}
